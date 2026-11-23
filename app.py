@@ -263,6 +263,6 @@ def admin():
         logs=c.execute('SELECT audit.*,users.username FROM audit JOIN users ON audit.actor_id=users.id ORDER BY audit.id DESC LIMIT 200').fetchall()
         failed=c.execute('SELECT username,ip,created_at FROM login_attempts WHERE ok=0 ORDER BY id DESC LIMIT 50').fetchall()
     return render_template('admin.html',users=users,logs=logs,failed=failed)
-
+init_db()
 if __name__=='__main__':
-    init_db();app.run(host='127.0.0.1',port=5000,debug=False)
+    app.run(host='127.0.0.1',port=5000,debug=False)
